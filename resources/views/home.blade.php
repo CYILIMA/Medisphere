@@ -60,6 +60,30 @@
         </div>
     </section>
 
+    @if ($medicines->isNotEmpty())
+        <section class="section published-section">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow"><span class="eyebrow-line"></span> Medicine library</span>
+                        <h2>Information for<br><span>your next question.</span></h2>
+                    </div>
+                    <a class="text-link" href="{{ route('medicines.index') }}">Browse all information <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="published-grid">
+                    @foreach ($medicines as $medicine)
+                        <a class="published-card" href="{{ route('medicines.show', $medicine->slug) }}">
+                            <span class="published-category">{{ $medicine->category }}</span>
+                            <strong>{{ $medicine->title }}</strong>
+                            <span class="published-summary">{{ $medicine->summary }}</span>
+                            <span class="published-link">Read information <span aria-hidden="true">→</span></span>
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
     <section class="section care-section">
         <div class="container care-layout">
             <div class="care-art">

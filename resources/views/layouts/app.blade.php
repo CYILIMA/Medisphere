@@ -35,6 +35,7 @@
                     <summary>Medicine <span class="chevron" aria-hidden="true"></span></summary>
                     <div class="dropdown-menu medicine-menu">
                         <span class="dropdown-heading">Explore specialties</span>
+                        <a href="{{ route('medicines.index') }}">Medicine library</a>
                         <div class="dropdown-grid">
                             @foreach (config('health.specialties') as $slug => $specialty)
                                 <a href="{{ route('medicine.show', ['specialty' => $slug]) }}">{{ $specialty['title'] }}</a>

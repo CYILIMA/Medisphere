@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicine;
 use Illuminate\Contracts\View\View;
 
 class HealthPageController extends Controller
@@ -22,7 +23,9 @@ class HealthPageController extends Controller
             ])
             ->values();
 
-        return view('home', compact('specialties', 'services'));
+        $medicines = Medicine::published()->latest('published_at')->take(3)->get();
+
+        return view('home', compact('specialties', 'services', 'medicines'));
     }
 
     public function medicine(string $specialty): View

@@ -23,3 +23,17 @@ if (menuToggle instanceof HTMLButtonElement && navigation instanceof HTMLElement
         }
     });
 }
+
+const imageInput = document.querySelector('[data-image-preview]');
+const imagePreview = document.querySelector('[data-preview-image]');
+
+if (imageInput instanceof HTMLInputElement && imagePreview instanceof HTMLImageElement) {
+    imageInput.addEventListener('change', () => {
+        const [file] = imageInput.files ?? [];
+
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file);
+            imagePreview.hidden = false;
+        }
+    });
+}
