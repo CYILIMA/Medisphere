@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\SiteAsset;
 use Illuminate\Testing\TestResponse;
 
 it('renders the home page with every medical specialty', function () {
@@ -18,6 +19,31 @@ it('renders the home page with every medical specialty', function () {
         ->assertSeeText('Psychologists')
         ->assertSeeText('Pharmacy')
         ->assertSeeText('Food & fruits');
+});
+
+it('shows admin-uploaded specialty thumbnails on homepage cards', function () {
+    SiteAsset::query()->create([
+        'asset_key' => 'specialty-dental',
+        'path' => 'site-assets/dental.png',
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('src="'.asset('storage/site-assets/dental.png').'"', false)
+        ->assertSee('class="specialty-thumbnail"', false)
+        ->assertSeeText('Dental medicine');
+});
+
+it('uses the admin-uploaded homepage hero image', function () {
+    SiteAsset::query()->create([
+        'asset_key' => 'home-hero',
+        'path' => 'site-assets/home-hero.png',
+    ]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('src="'.asset('storage/site-assets/home-hero.png').'"', false)
+        ->assertDontSee('images.unsplash.com/photo-1559839734-2b71ea197ec2', false);
 });
 
 it('renders each specialty, service and information page', function () {
@@ -48,4 +74,11 @@ it('renders each specialty, service and information page', function () {
 
 it('returns a not found response for an unknown specialty', function () {
     $this->get('/medicine/unknown')->assertNotFound();
+});
+
+it('keeps the introductory section on non-medicine service pages', function () {
+    $this->get(route('service.show', ['service' => 'pharmacy']))
+        ->assertOk()
+        ->assertSeeText('A good place to start')
+        ->assertSeeText('How we can help');
 });

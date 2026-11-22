@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="theme-color" content="#f8f8f3">
     <meta name="description" content="@yield('meta_description', 'Explore thoughtful health information and care services with MediSphere.')">
     <title>@yield('title', 'MediSphere — care, made more human')</title>
@@ -18,12 +19,16 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="{{ route('home') }}" aria-label="MediSphere home">
-                <span class="brand-mark" aria-hidden="true">
-                    <svg viewBox="0 0 42 42" fill="none">
-                        <path d="M21 5v32M5 21h32" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                        <circle cx="21" cy="21" r="17" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </span>
+                @if ($siteLogoPath)
+                    <img class="brand-logo" src="{{ asset('storage/'.$siteLogoPath) }}" alt="">
+                @else
+                    <span class="brand-mark" aria-hidden="true">
+                        <svg viewBox="0 0 42 42" fill="none">
+                            <path d="M21 5v32M5 21h32" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+                            <circle cx="21" cy="21" r="17" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </span>
+                @endif
                 <span class="brand-name">medi<span>sphere</span></span>
             </a>
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" data-menu-toggle>
@@ -65,16 +70,41 @@
         @yield('content')
     </main>
 
+    <section class="ora-chat" aria-label="Chat with ORA">
+        <div class="ora-panel" id="ora-panel" hidden>
+            <div class="ora-panel-header">
+                <div><span class="ora-name">ORA</span><span class="ora-status">Here to help you find your next step</span></div>
+                <button class="ora-close" type="button" aria-label="Close ORA chat" data-ora-close>&times;</button>
+            </div>
+            <div class="ora-messages" aria-live="polite" data-ora-messages>
+                <p class="ora-message ora-message-assistant">Hi, I’m ORA. Ask a quick question about MediSphere care, medicine information, wellbeing, or support.</p>
+            </div>
+            <form class="ora-form" data-ora-form>
+                <label class="sr-only" for="ora-message">Your question</label>
+                <input id="ora-message" name="message" type="text" maxlength="500" placeholder="Write your question..." autocomplete="off" required data-ora-input>
+                <button type="submit">Send <span class="sr-only">your question to ORA</span></button>
+            </form>
+            <p class="ora-disclaimer">ORA shares general information, not medical advice. In an emergency, contact local emergency services.</p>
+        </div>
+        <button class="ora-trigger" type="button" aria-expanded="false" aria-controls="ora-panel" data-ora-trigger>
+            <span class="ora-trigger-mark" aria-hidden="true">✦</span> Chat with ORA
+        </button>
+    </section>
+
     <footer class="site-footer">
         <div class="container footer-main">
             <div class="footer-brand">
                 <a class="brand brand-light" href="{{ route('home') }}">
-                    <span class="brand-mark" aria-hidden="true">
-                        <svg viewBox="0 0 42 42" fill="none">
-                            <path d="M21 5v32M5 21h32" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
-                            <circle cx="21" cy="21" r="17" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </span>
+                    @if ($siteLogoPath)
+                        <img class="brand-logo" src="{{ asset('storage/'.$siteLogoPath) }}" alt="">
+                    @else
+                        <span class="brand-mark" aria-hidden="true">
+                            <svg viewBox="0 0 42 42" fill="none">
+                                <path d="M21 5v32M5 21h32" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+                                <circle cx="21" cy="21" r="17" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </span>
+                    @endif
                     <span class="brand-name">medi<span>sphere</span></span>
                 </a>
                 <p>Care, made more human. Find thoughtful health information and a clearer path to support.</p>

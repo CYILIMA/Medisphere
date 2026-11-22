@@ -21,7 +21,7 @@
             </div>
             <div class="hero-visual">
                 <div class="hero-image-wrap">
-                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="A doctor ready to listen and help" fetchpriority="high">
+                    <img src="{{ $homeHeroPath ? asset('storage/'.$homeHeroPath) : 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&amp;fit=crop&amp;w=1100&amp;q=85' }}" alt="A doctor ready to listen and help" fetchpriority="high">
                     <div class="image-label"><span class="label-icon">♡</span><span><strong>Care that starts with you</strong><small>Explore at your own pace</small></span></div>
                 </div>
                 <div class="hero-sticker" aria-hidden="true"><span>your</span><strong>health<br>journey</strong><span>matters</span><i>✳</i></div>
@@ -50,7 +50,10 @@
             </div>
             <div class="specialty-grid">
                 @foreach ($specialties as $specialty)
-                    <a class="specialty-card tone-{{ $specialty['tone'] }}" href="{{ $specialty['url'] }}">
+                    <a class="specialty-card tone-{{ $specialty['tone'] }}{{ $specialty['image_path'] ? ' has-thumbnail' : '' }}" href="{{ $specialty['url'] }}">
+                        @if ($specialty['image_path'])
+                            <img class="specialty-thumbnail" src="{{ asset('storage/'.$specialty['image_path']) }}" alt="" loading="lazy">
+                        @endif
                         <span class="specialty-icon" aria-hidden="true">{{ $specialty['icon'] }}</span>
                         <span class="specialty-title">{{ $specialty['title'] }}</span>
                         <span class="card-arrow" aria-hidden="true">→</span>
@@ -73,10 +76,15 @@
                 <div class="published-grid">
                     @foreach ($medicines as $medicine)
                         <a class="published-card" href="{{ route('medicines.show', $medicine->slug) }}">
-                            <span class="published-category">{{ $medicine->category }}</span>
-                            <strong>{{ $medicine->title }}</strong>
-                            <span class="published-summary">{{ $medicine->summary }}</span>
-                            <span class="published-link">Read information <span aria-hidden="true">→</span></span>
+                            @if ($medicine->disease_thumbnail_path)
+                                <img class="published-card-thumbnail" src="{{ asset('storage/'.$medicine->disease_thumbnail_path) }}" alt="{{ $medicine->condition }}" loading="lazy">
+                            @endif
+                            <span class="published-card-content">
+                                <span class="published-category">{{ $medicine->category }}</span>
+                                <strong>{{ $medicine->title }}</strong>
+                                <span class="published-summary">{{ $medicine->summary }}</span>
+                                <span class="published-link">Read information <span aria-hidden="true">→</span></span>
+                            </span>
                         </a>
                     @endforeach
                 </div>

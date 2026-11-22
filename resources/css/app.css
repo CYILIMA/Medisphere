@@ -36,6 +36,28 @@ img { display: block; max-width: 100%; }
 .skip-link { position: absolute; z-index: 20; top: 8px; left: 8px; padding: 12px 16px; border-radius: 8px; color: white; background: var(--green-dark); transform: translateY(-150%); }
 .skip-link:focus { transform: translateY(0); }
 
+.ora-chat { position: fixed; z-index: 30; right: 24px; bottom: 24px; display: flex; flex-direction: column; align-items: end; gap: 12px; }
+.ora-trigger { min-height: 52px; display: inline-flex; align-items: center; gap: 10px; padding: 0 18px 0 9px; border: 0; border-radius: 999px; color: #fff; background: var(--green); box-shadow: 0 12px 30px rgb(35 51 47 / 24%); font-size: 12px; font-weight: 700; cursor: pointer; transition: background .2s ease, transform .2s ease; }
+.ora-trigger:hover { background: var(--green-dark); transform: translateY(-2px); }
+.ora-trigger:focus-visible, .ora-close:focus-visible, .ora-form :focus-visible { outline: 3px solid #cfdb9c; outline-offset: 3px; }
+.ora-trigger-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: #dcebcf; font-size: 15px; }
+.ora-panel { width: min(370px, calc(100vw - 32px)); overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 20px 54px rgb(35 51 47 / 22%); }
+.ora-panel-header { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 17px; color: #fff; background: var(--green-dark); }
+.ora-name, .ora-status { display: block; }
+.ora-name { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; letter-spacing: .08em; }
+.ora-status { margin-top: 2px; color: rgb(255 255 255 / 76%); font-size: 10px; }
+.ora-close { width: 30px; height: 30px; border: 0; border-radius: 50%; color: #fff; background: rgb(255 255 255 / 14%); font-size: 23px; line-height: 1; cursor: pointer; }
+.ora-messages { max-height: 300px; display: flex; flex-direction: column; gap: 9px; overflow-y: auto; padding: 16px; background: #fbfcf9; }
+.ora-message { width: fit-content; max-width: 88%; margin: 0; padding: 10px 12px; border-radius: 12px; font-size: 12px; line-height: 1.55; }
+.ora-message-assistant { align-self: start; border-bottom-left-radius: 3px; color: #3d5149; background: #e8f0e9; }
+.ora-message-user { align-self: end; border-bottom-right-radius: 3px; color: #fff; background: var(--green); }
+.ora-message-link { align-self: start; margin-top: -3px; color: var(--green-dark); font-size: 11px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.ora-form { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--line); }
+.ora-form input { min-width: 0; flex: 1; padding: 11px 12px; border: 1px solid #cfd8cf; border-radius: 7px; color: var(--ink); background: #fff; font-size: 12px; }
+.ora-form button { padding: 0 13px; border: 0; border-radius: 7px; color: #fff; background: var(--green); font-size: 11px; font-weight: 700; cursor: pointer; }
+.ora-form button:disabled, .ora-form input:disabled { cursor: wait; opacity: .65; }
+.ora-disclaimer { margin: 0; padding: 0 14px 13px; color: var(--muted); font-size: 9px; line-height: 1.45; }
+
 .announcement { min-height: 34px; display: flex; align-items: center; justify-content: center; gap: 9px; padding: 6px 16px; color: #f5f7ed; background: var(--green-dark); font-size: 11px; letter-spacing: .045em; }
 .announcement-dot { width: 6px; height: 6px; border-radius: 50%; background: #cfdb9c; }
 .site-header { position: sticky; z-index: 10; top: 0; background: rgb(248 248 243 / 94%); border-bottom: 1px solid rgb(35 51 47 / 7%); backdrop-filter: blur(14px); }
@@ -43,6 +65,7 @@ img { display: block; max-width: 100%; }
 .brand { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 9px; }
 .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; color: var(--green); }
 .brand-mark svg { width: 100%; height: 100%; }
+.brand-logo { width: auto; max-width: 150px; height: 42px; object-fit: contain; }
 .brand-name { color: var(--ink); font-size: 21px; font-weight: 600; letter-spacing: -.075em; }
 .brand-name span { color: var(--green); font-weight: 400; }
 .primary-navigation { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); }
@@ -118,6 +141,8 @@ img { display: block; max-width: 100%; }
 .tone-blue { background: #e7edf1; }
 .tone-peach { background: #f6e8df; }
 .tone-lilac { background: #eeebf2; }
+.specialty-thumbnail { position: absolute; top: 50%; right: 42px; width: clamp(70px, 8vw, 104px); aspect-ratio: 1; transform: translateY(-50%); border-radius: 4px; object-fit: cover; box-shadow: 0 5px 16px rgb(35 51 47 / 12%); }
+.specialty-card.has-thumbnail .specialty-title { max-width: calc(100% - 76px); }
 .specialty-icon { width: 39px; height: 39px; display: grid; place-items: center; border-radius: 50%; color: var(--green-dark); background: rgb(255 255 255 / 65%); font-family: Georgia, serif; font-size: 21px; }
 .specialty-title { max-width: 140px; padding-top: 22px; color: #33423c; font-family: Georgia, 'Times New Roman', serif; font-size: 17px; line-height: 1.2; }
 .card-arrow { position: absolute; right: 19px; bottom: 18px; color: #718179; font-size: 15px; transition: transform .2s ease; }
@@ -172,6 +197,7 @@ img { display: block; max-width: 100%; }
 .page-hero-copy > p { max-width: 480px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.9; }
 .page-hero-copy > .button { margin-top: 27px; }
 .page-hero-card { position: relative; min-height: 310px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; border-radius: 48% 48% 5px 5px; }
+.page-hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .page-hero-icon { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 1px solid rgb(47 104 91 / 17%); border-radius: 50%; color: var(--green); background: rgb(255 255 255 / 43%); font-family: Georgia, serif; font-size: 66px; }
 .page-hero-caption { position: relative; z-index: 1; margin-top: 18px; color: #48635a; font-family: Georgia, 'Times New Roman', serif; font-size: 19px; font-style: italic; }
 .page-card-decoration { position: absolute; top: 20px; right: 26px; color: rgb(47 104 91 / 32%); font-size: 34px; }
@@ -250,6 +276,8 @@ img { display: block; max-width: 100%; }
     .specialty-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
     .specialty-card { min-height: 145px; padding: 15px; }
     .specialty-title { font-size: 16px; }
+    .specialty-thumbnail { right: 34px; width: 54px; }
+    .specialty-card.has-thumbnail .specialty-title { max-width: calc(100% - 58px); }
     .care-layout { grid-template-columns: 1fr; gap: 40px; }
     .care-art { min-height: 350px; }
     .circle-back { width: 295px; height: 295px; }
@@ -283,6 +311,8 @@ img { display: block; max-width: 100%; }
     .hero-sticker { width: 92px; height: 92px; font-size: 10px; }
     .hero-sticker strong { font-size: 16px; }
     .specialty-card { min-height: 133px; }
+    .specialty-thumbnail { right: 31px; width: 48px; }
+    .specialty-card.has-thumbnail .specialty-title { max-width: calc(100% - 48px); }
     .mission-inner h2 { font-size: 31px; }
     .mission-inner .button { margin-left: 0; }
     .footer-links { gap: 35px; }
@@ -295,10 +325,12 @@ img { display: block; max-width: 100%; }
 .published-section { background: #f2f5ef; }
 .published-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .published-grid-large { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.published-card { min-height: 205px; display: flex; flex-direction: column; align-items: flex-start; padding: 23px; border: 1px solid #dfe6dc; background: #fff; transition: border-color .2s ease, transform .2s ease; }
+.published-card { min-height: 205px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden; border: 1px solid #dfe6dc; background: #fff; transition: border-color .2s ease, transform .2s ease; }
 .published-card:hover { border-color: #9ab3a0; transform: translateY(-3px); }
+.published-card-thumbnail { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #e5eee7; }
+.published-card-content { min-height: 205px; display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 23px; }
 .published-category { color: #78877c; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
-.published-card > strong { margin-top: 18px; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 23px; font-weight: 400; line-height: 1.15; }
+.published-card-content > strong { margin-top: 18px; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 23px; font-weight: 400; line-height: 1.15; }
 .published-summary { margin-top: 10px; color: var(--muted); font-size: 11px; line-height: 1.7; }
 .published-link { display: inline-flex; gap: 10px; align-items: center; margin-top: auto; padding-top: 18px; color: var(--green); font-size: 10px; font-weight: 600; }
 .published-link span { font-size: 15px; }
@@ -319,11 +351,13 @@ img { display: block; max-width: 100%; }
 .medicine-detail-grid { display: grid; grid-template-columns: minmax(0, 1fr) 310px; align-items: center; gap: 60px; }
 .medicine-detail-grid .page-hero-copy { max-width: 640px; }
 .medicine-detail-grid h1 { overflow-wrap: anywhere; }
+.medicine-detail-thumbnail { width: 100%; max-height: 360px; margin-top: 28px; aspect-ratio: 16 / 9; object-fit: cover; background: #e5eee7; }
 .doctor-contact { display: flex; flex-direction: column; align-items: flex-start; padding: 23px; border: 1px solid #e0e7df; background: #f2f5ef; }
 .doctor-contact img { width: 82px; height: 82px; object-fit: cover; border-radius: 50%; background: #dce5dc; }
 .doctor-contact-label { margin-top: 19px; color: #76847a; font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 .doctor-contact h2 { margin: 8px 0 3px; color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 23px; font-weight: 400; }
 .doctor-contact p { margin: 0 0 12px; color: var(--muted); font-size: 11px; }
+.doctor-contact .doctor-bio { margin: 0 0 5px; white-space: pre-line; line-height: 1.7; }
 .doctor-contact a { margin-top: 7px; color: var(--green-dark); font-size: 11px; overflow-wrap: anywhere; }
 .medicine-information { display: grid; grid-template-columns: .72fr 1.28fr; gap: 75px; }
 .medicine-facts dl { margin: 24px 0 0; border-top: 1px solid #dfe5dc; }
@@ -409,9 +443,9 @@ img { display: block; max-width: 100%; }
 .admin-field > label:not(.admin-upload) { color: #536258; font-size: 9px; font-weight: 600; }
 .admin-field > label b { color: #a76554; font-weight: 600; }
 .admin-field > label span { color: #909a92; font-weight: 400; }
-.admin-field input:not([type="file"]), .admin-field textarea { width: 100%; min-height: 39px; padding: 10px 11px; border: 1px solid #dfe6df; border-radius: 0; outline: none; color: #34463a; background: #fff; font: inherit; font-size: 10px; }
+.admin-field input:not([type="file"]), .admin-field textarea, .admin-field select { width: 100%; min-height: 39px; padding: 10px 11px; border: 1px solid #dfe6df; border-radius: 0; outline: none; color: #34463a; background: #fff; font: inherit; font-size: 10px; }
 .admin-field textarea { min-height: auto; resize: vertical; line-height: 1.65; }
-.admin-field input:focus, .admin-field textarea:focus { border-color: #7d9a7f; box-shadow: 0 0 0 2px #dce9dc; }
+.admin-field input:focus, .admin-field textarea:focus, .admin-field select:focus { border-color: #7d9a7f; box-shadow: 0 0 0 2px #dce9dc; }
 .admin-field input::placeholder, .admin-field textarea::placeholder { color: #abb3ab; }
 .admin-field-hint { color: #939d94; font-size: 8px; }
 .admin-error { color: #a64e43; font-size: 9px; }
@@ -422,6 +456,15 @@ img { display: block; max-width: 100%; }
 .admin-upload strong { font-size: 9px; font-weight: 600; }
 .admin-upload small { color: #909a92; font-size: 8px; text-align: center; }
 .admin-upload img { width: 60px; height: 60px; margin-top: 5px; object-fit: cover; border-radius: 50%; }
+.admin-upload img.admin-upload-thumbnail { width: min(100%, 240px); height: auto; aspect-ratio: 16 / 9; border-radius: 2px; }
+.admin-upload img.admin-site-logo-preview { width: auto; max-width: min(100%, 260px); height: 72px; object-fit: contain; border-radius: 0; }
+.admin-specialty-assets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.ora-training-list { display: grid; gap: 12px; }
+.ora-training-card { display: grid; grid-template-columns: minmax(160px, .7fr) minmax(0, 1.3fr); gap: 14px 18px; padding: 18px; border: 1px solid #dfe6df; background: #fff; }
+.ora-training-actions { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+.ora-training-delete { display: flex; justify-content: end; margin-top: -52px; margin-right: 18px; pointer-events: none; }
+.ora-training-delete .admin-icon-button { pointer-events: auto; }
+.admin-upload img.admin-specialty-image-preview { width: 100%; max-width: 360px; height: auto; aspect-ratio: 3 / 2; border-radius: 2px; }
 .admin-publish-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px clamp(18px, 3vw, 32px); }
 .admin-publish-toggle { display: flex; align-items: center; gap: 11px; cursor: pointer; }
 .admin-publish-toggle input { position: absolute; width: 1px; height: 1px; opacity: 0; }
@@ -461,6 +504,8 @@ img { display: block; max-width: 100%; }
     .medicine-detail-grid, .medicine-information { grid-template-columns: 1fr; gap: 30px; }
     .doctor-contact { max-width: 420px; }
     .admin-frame { display: block; }
+    .admin-specialty-assets { grid-template-columns: 1fr; }
+    .ora-training-card { grid-template-columns: 1fr; }
     .admin-sidebar { position: static; width: 100%; height: auto; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 12px 16px; border-right: 0; border-bottom: 1px solid #e1e6e1; }
     .admin-side-label, .admin-side-bottom { display: none; }
     .admin-side-link { grid-column: 1 / -1; min-height: 35px; }

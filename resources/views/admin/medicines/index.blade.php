@@ -8,6 +8,8 @@
             <a class="admin-brand" href="{{ route('home') }}"><span class="admin-brand-mark">+</span><span>medi<strong>sphere</strong></span></a>
             <span class="admin-side-label">Workspace</span>
             <a class="admin-side-link is-active" href="{{ route('admin.medicines.index') }}"><span aria-hidden="true">▤</span> Medicine library</a>
+            <a class="admin-side-link" href="{{ route('admin.site-appearance.index') }}"><span aria-hidden="true">◉</span> Site appearance</a>
+            <a class="admin-side-link" href="{{ route('admin.ora-training.index') }}"><span aria-hidden="true">✦</span> ORA training</a>
             <a class="admin-side-link" href="{{ route('medicines.index') }}"><span aria-hidden="true">↗</span> View public library</a>
             <div class="admin-side-bottom">
                 <span class="admin-avatar" aria-hidden="true">{{ strtoupper(substr(auth()->user()->name, 0, 1)) }}</span>

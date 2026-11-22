@@ -24,10 +24,15 @@
                 <div class="published-grid published-grid-large">
                     @foreach ($medicines as $medicine)
                         <a class="published-card" href="{{ route('medicines.show', $medicine->slug) }}">
-                            <span class="published-category">{{ $medicine->category }} · {{ $medicine->condition }}</span>
-                            <strong>{{ $medicine->title }}</strong>
-                            <span class="published-summary">{{ $medicine->summary }}</span>
-                            <span class="published-link">Read information <span aria-hidden="true">→</span></span>
+                            @if ($medicine->disease_thumbnail_path)
+                                <img class="published-card-thumbnail" src="{{ asset('storage/'.$medicine->disease_thumbnail_path) }}" alt="{{ $medicine->condition }}" loading="lazy">
+                            @endif
+                            <span class="published-card-content">
+                                <span class="published-category">{{ $medicine->category }} · {{ $medicine->condition }}</span>
+                                <strong>{{ $medicine->title }}</strong>
+                                <span class="published-summary">{{ $medicine->summary }}</span>
+                                <span class="published-link">Read information <span aria-hidden="true">→</span></span>
+                            </span>
                         </a>
                     @endforeach
                 </div>

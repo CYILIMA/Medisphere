@@ -11,12 +11,18 @@
                 <span class="eyebrow"><span class="eyebrow-line"></span> {{ $medicine->category }}</span>
                 <h1>{{ $medicine->title }}<span class="title-period">.</span></h1>
                 <p>{{ $medicine->summary }}</p>
+                @if ($medicine->disease_thumbnail_path)
+                    <img class="medicine-detail-thumbnail" src="{{ asset('storage/'.$medicine->disease_thumbnail_path) }}" alt="{{ $medicine->condition }}" fetchpriority="high">
+                @endif
             </div>
             <aside class="doctor-contact" aria-label="Doctor contact">
                     <img src="{{ asset('storage/'.$medicine->doctor_image_path) }}" alt="{{ $medicine->doctor_name }}">
                 <span class="doctor-contact-label">A doctor to contact</span>
                 <h2>{{ $medicine->doctor_name }}</h2>
                 <p>{{ $medicine->doctor_specialty }}</p>
+                @if ($medicine->doctor_bio)
+                    <p class="doctor-bio">{{ $medicine->doctor_bio }}</p>
+                @endif
                 <a href="mailto:{{ $medicine->doctor_email }}">{{ $medicine->doctor_email }}</a>
                 @if ($medicine->doctor_phone)
                     <a href="tel:{{ $medicine->doctor_phone }}">{{ $medicine->doctor_phone }}</a>
@@ -32,6 +38,9 @@
                     <div><dt>Medicine</dt><dd>{{ $medicine->medicine_name }}</dd></div>
                     <div><dt>Condition</dt><dd>{{ $medicine->condition }}</dd></div>
                     <div><dt>Category</dt><dd>{{ $medicine->category }}</dd></div>
+                    @if ($medicine->specialty)
+                        <div><dt>Medical specialty</dt><dd>{{ config("health.specialties.{$medicine->specialty}.title", 'Other') }}</dd></div>
+                    @endif
                 </dl>
             </div>
             <article class="medicine-article">
